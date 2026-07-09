@@ -1,2 +1,8 @@
-429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+from fastapi import FastAPI
+from .routers import parking_slots
+from .database import Base, engine
+
+Base.metadata.create_all(bind=engine)
+
+app = FastAPI()
+app.include_router(parking_slots.router)
