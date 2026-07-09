@@ -1,2 +1,11 @@
-429: Too Many Requests
-For more on scraping GitHub and how it may affect your rights, please review our Terms of Service (https://docs.github.com/en/site-policy/github-terms/github-terms-of-service).
+from sqlalchemy import Column, Integer, String, Boolean
+from .database import Base
+
+class ParkingSlot(Base):
+    __tablename__ = "parking_slots"
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    slot_code = Column(String(50), unique=True, nullable=False)
+    zone_name = Column(String(255), nullable=False)
+    max_weight = Column(Integer, nullable=False)
+    is_available = Column(Boolean, default=True)
